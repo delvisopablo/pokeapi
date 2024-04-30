@@ -1,0 +1,75 @@
+/* Estilos generales del contenedor */
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f8f8f8;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Encabezado principal */
+  .principal h1 {
+    color: #ff0000; /* Rojo */
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para la caja de Pokémon aleatorio */
+  .pokemonRandom {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 600px;
+  }
+  
+  .pokemonRandom h1 {
+    color: #0000ff; /* Azul */
+  }
+  
+  .pokemonRandom h3 {
+    color: #ffa500; /* Amarillo */
+  }
+  
+  /* Imágenes de Pokémon */
+  .pokemonRandom img {
+    width: 200px; /* Ajusta esto según necesites */
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  /* Estilos para párrafos */
+  .pokemonRandom p {
+    color: #303030;
+    font-size: 16px;
+  }
+  
+  /* Botones */
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Azul */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Azul oscuro */
+  }
+  
+  /* Botones de navegación */
+  .pokemonRandom div {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pokemonRandom div button {
+    min-width: 100px; /* Asegura que los botones tienen un mínimo de ancho */
+  }
+  
