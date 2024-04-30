@@ -1,1 +1,106 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Colores de los tipos */
+
+.tipo-bicho {
+    background-color: #92BC2C;
+    border: 2px solid #6D9E1B;
+  }
+  
+  .tipo-oscuro {
+    background-color: #595761;
+    border: 2px solid #41414D;
+  }
+  
+  .tipo-dragon {
+    background-color: #0C69C8;
+    border: 2px solid #0753A1;
+  }
+  
+  .tipo-electrico {
+    background-color: #EDD53E;
+    border: 2px solid #C2B31C;
+  }
+  
+  .tipo-hada {
+    background-color: #EC8FE6;
+    border: 2px solid #C748B9;
+  }
+  
+  .tipo-lucha {
+    background-color: #CE4069;
+    border: 2px solid #A12B51;
+  }
+  
+  .tipo-fuego {
+    background-color: #FB6C6C;
+    border: 2px solid #D93F3F;
+  }
+  
+  .tipo-volador {
+    background-color: #92AADE;
+    border: 2px solid #637BBB;
+  }
+  
+  .tipo-fantasma {
+    background-color: #516AAC;
+    border: 2px solid #3A4972;
+  }
+  
+  .tipo-planta {
+    background-color: #62B957;
+    border: 2px solid #3D8948;
+  }
+  
+  .tipo-tierra {
+    background-color: #AD7235;
+    border: 2px solid #8A5731;
+  }
+  
+  .tipo-hielo {
+    background-color: #75D0C1;
+    border: 2px solid #4AC7B0;
+  }
+  
+  .tipo-normal {
+    background-color: #A0A29F;
+    border: 2px solid #727273;
+  }
+  
+  .tipo-veneno {
+    background-color: #B763CF;
+    border: 2px solid #933B97;
+  }
+  
+  .tipo-psiquico {
+    background-color: #FA8581;
+    border: 2px solid #F33535;
+  }
+  
+  .tipo-roca {
+    background-color: #C8B686;
+    border: 2px solid #998754;
+  }
+  
+  .tipo-acero {
+    background-color: #5795A3;
+    border: 2px solid #417D9A;
+  }
+  
+  .tipo-agua {
+    background-color: #539DDF;
+    border: 2px solid #3373AD;
+  }
+  

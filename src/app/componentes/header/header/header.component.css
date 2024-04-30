@@ -1,0 +1,34 @@
+/* Estilos para el contenedor del header */
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    height: 60px;
+}
+
+/* Estilos para el título */
+.header-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los enlaces */
+.header-links {
+    display: flex;
+    justify-content: center;
+}
+
+.header-link {
+    margin: 0 10px;
+    color: #ff0000; /* rojo */
+}
+
+.header-link:hover {
+    color: #0000ff; /* azul */
+}
+
+.header-link:active {
+    color: #ffff00; /* amarillo */
+}
