@@ -1,25 +1,25 @@
    
- // buscador de pokemon 
-
- // 
-
-<input type="text" placeholder="Enter Pokemon Name">
-
-@for (pokemon of pokemons; track $index) {
-    <h1>Pokedex</h1>
-    <h2>{{ listaPokemon.nombre }}</h2>
-    <p>Number: {{ listaPokemon.nPokedex }}</p>
-    <p>Type: {{ listaPokemon.tipo }}</p>
-    <img src="{{ listaPokemon.fotoDel }}" alt="{{ listaPokemon.nombre }} Image">
-}
-
-<h1>ssss</h1>
-        @for(nombre of listaPokemon.nombre; track nombre){
-            <p>hoal</p>
-        }
-          
+<h1>Pokedex</h1>
 
 
-    <button (click)="prev()">Prev</button>
+
+
+
+    <div >
+        <h1>pokenmonas</h1>
+        <h2>{{ pokemon.nombre }}</h2>
+        <p>Number: {{ pokemon.nPokedex }}</p>
+        <p>Type: {{ pokemon.tipo }}</p>
+        <img src="{{ pokemon.fotoDel }}" alt="{{ pokemon.nombre }} Image">
+        <p>{{getDescripcionPokemon(pokemon.nombre)}}</p>
+    </div>
+
+
+
+
+
+
+
+    <!-- <button (click)="prev()">Prev</button> -->
 
     

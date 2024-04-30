@@ -1,34 +1,14 @@
-<div class = "principal">
-  <h1> Generador de Pokemon Aleatorio</h1>
+<h1> Generador de Pokemon Aleatorio</h1>
+<button (click)="buscarPokemonAleatorio()">Generar Pokémon Aleatorio</button>
+<app-pokemon [pokemon] = "pokemon">
 
-  <div class="pokemonRandom">
+   
+</app-pokemon>
 
-    @if (cargando === true) {
-      <p>cargando...</p>
-    } @else {
-       <h1>{{listaPokemon.nombre}}</h1>
-    <h3>{{listaPokemon.nPokedex}}</h3>
-    @if (esShiny === false) {
-      <img [src]="listaPokemon.fotoDel" alt="{{ listaPokemon.nombre }}">
-    } @else  {
-      <img [src]="listaPokemon.fotoShiny" alt="{{ listaPokemon.nombre }}">
-    }
-    @if(listaPokemon.tipo2 !== 'N/A'){
-      <p
-        class=.tipo-fuego> <strong>Tipo:</strong> {{ listaPokemon.tipo }} / {{ listaPokemon.tipo2 }} </p>
-     }@else {
-      <p><strong>Tipo:</strong> {{ listaPokemon.tipo }} </p>
-     }
-    <p><strong>Juego:</strong> {{ listaPokemon.generacion }}</p>
-    <button (click)="verShiny()">Ver {{ esShiny ? 'Normal' : 'Shiny' }}</button>
-    <button (click)="cambiarPokemon(1)">Siguiente</button>
-    <button (click)="cambiarPokemon(-1)">Anterior</button>
-    
-    }
 
-    <p [style]="colorearTipo( listaPokemon.tipo )">{{ listaPokemon.tipo }}</p>
-  
-  
+
+<!-- <button (click)="cambiarPokemon(1)">Siguiente</button>
+      <button (click)="cambiarPokemon(-1)">Anterior</button> -->
 
 
    

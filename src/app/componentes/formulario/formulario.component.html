@@ -1,0 +1,70 @@
+<h1>Descubre qué Pokémon eres</h1>
+    @if(!formularioEnviado){ 
+        <p>¡Descubre qué Pokémon eres! Responde a las siguientes preguntas y descubre cuál es tu Pokémon ideal.</p>
+        <form class="que pokemon?" [formGroup] = "formulario" (ngSubmit)="onSubmit()">
+        <p>¿Que edad tienes?</p>
+        <input type="number" name="edad" id="edad" class="pokeform" formControlName="edad"><br>
+
+        <p>¿Qué te gusta hacer en tu tiempo libre?</p>
+        <select name="tiempo_libre" id="tiempo_libre" class="pokeform" formControlName="gustos">
+            <option value="leer">Leer</option>
+            <option value="videojuegos">Jugar videojuegos</option>
+            <option value="deporte">Hacer deporte</option>
+            <option value="caminar">Caminar</option>
+            <option value="pintar">Pintar o dibujar</option>
+            <option value="musica">Escuchar música</option>
+            <option value="cocinar">Cocinar</option>
+            <option value="viajar">Viajar</option>
+            <option value="naturaleza">Disfrutar de la naturaleza</option>
+        </select><br>
+
+        <p>¿Qué película te gusta más de esta lista?</p>
+        <select name="pelicula" id="pelicula" class="pokeform" formControlName="pelicula">
+            <option value="aventura">Película de aventuras</option>
+            <option value="comedia">Comedia</option>
+            <option value="drama">Drama</option>
+            <option value="terror">Terror</option>
+            <option value="accion">Acción</option>
+            <option value="romance">Romance</option>
+            <option value="ciencia_ficcion">Ciencia ficción</option>
+            <option value="documental">Documental</option>
+            <option value="animacion">Animación</option>
+        </select><br>
+
+        <p>¿Con qué tipo te identificas más?</p>
+        <select name="tipo_pokemon" id="tipo_pokemon" class="pokeform" formControlName="tipo">
+            <option value="fuego">Fuego</option>
+            <option value="agua">Agua</option>
+            <option value="planta">Planta</option>
+            <option value="electrico">Eléctrico</option>
+            <option value="psiquico">Psíquico</option>
+            <option value="hada">Hada</option>
+            <option value="hielo">Hielo</option>
+            <option value="lucha">Lucha</option>
+            <option value="volador">Volador</option>
+        </select><br>
+
+        <p>Elige un hábitat:</p>
+        <select name="habitat" id="habitat" class="pokeform" formControlName="habitat">
+            <option value="bosque">Bosque</option>
+            <option value="mar">Mar</option>
+            <option value="montana">Montaña</option>
+            <option value="ciudad">Ciudad</option>
+            <option value="campo">Campo</option>
+            <option value="desierto">Desierto</option>
+            <option value="cueva">Cueva</option>
+            <option value="volcan">Volcán</option>
+            <option value="espacio">Espacio</option>
+        </select><br>
+
+        <button type = "submit">Enviar</button>
+
+    </form>
+}
+
+    @else{
+        <app-pokemon [pokemon] = "pokemon"></app-pokemon>
+        <button (click)="formularioEnviado = false">Volver a empezar</button>
+    }
+    
+   

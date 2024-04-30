@@ -1,0 +1,29 @@
+@if(acertado === false)
+{
+    <div id="pokemonGuess">
+    <img src="{{ pokemon.fotoDel }}" alt="{{ pokemon.nombre }}" class = "img-negra">
+    <form [formGroup]="formuGuess" (ngSubmit)="onSubmit()">
+    <input type="text" id="guessInput" placeholder="Escribe tu respuesta aquí" formControlName="guess">
+    <button type="submit">Adivinar</button>
+
+    </form>
+</div>
+ }@else {
+    
+        <div id="pokemon">
+            <h1>Acertaste</h1>
+            <img src="{{ pokemon.fotoDel }}" alt="{{ pokemon.nombre }}" class ="img-normal">
+            <h1>{{ pokemon.nombre }}</h1>
+            <h2>{{ pokemon.tipo }}</h2>
+            <!-- <p>{{getDescripcionPokemon(pokemon.nombre)}}</p> -->
+        </div>
+    }
+
+
+<div id="score">
+    <h1>Score: <span id="scoreText">0</span></h1>
+
+
+<div id="result">
+    <h1 id="resultText"></h1>
+    <button onclick="reiniciar()">Reiniciar</button>

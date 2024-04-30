@@ -19,12 +19,11 @@ export class ConsultaserviceService {
     return this.http.get(this.url + '/' + nPokedex + '/').pipe(
       map((response: any) => {
         return {
-          nombre: response.forms.name,
+          nombre: response.name,
           habilidad: response.abilities && response.abilities.ability ? response.abilities.ability.name : 'N/A',
           nPokedex: response.id,
           tipo: response.types[0].type.name,
           tipo2: response.types && response.types[1] && response.types[1].type ? response.types[1].type.name : 'N/A',          
-          generacion: response.game_indices[0].version.name,
           fotoDel: response.sprites.front_default,
           fotoShiny: response.sprites.front_shiny
         };
