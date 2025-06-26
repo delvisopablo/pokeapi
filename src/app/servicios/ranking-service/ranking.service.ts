@@ -11,7 +11,7 @@ import { Ranking } from '../../../modelos/ranking';
 })
 export class RankingService {
 
-  private apiUrl = 'http://localhost:8080/api/ranking';
+private apiUrl = 'https://pokeserver.onrender.com/api/ranking';
   injector = inject(Injector);
   http = inject(HttpClient);
 
