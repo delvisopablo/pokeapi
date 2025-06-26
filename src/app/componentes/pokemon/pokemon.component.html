@@ -1,36 +1,64 @@
 <div class = "principal">
     
-  
-    <div class="pokemonRandom" >
+  @if(pokemon){
+    <!-- [class] = "cambiarFondo( pokemon.types[0].type.name)" -->
+    <div class="pokemon">
       
       @if (cargando === true) {
         <p>Cargando...</p>
-      } @else {
-         <h1>{{pokemon.nombre}}</h1>
-      <h3>{{pokemon.nPokedex}}</h3>
-      @if (esShiny === false) {
-        <img [src]="pokemon.fotoDel" alt="{{ pokemon.nombre }}">
-      } @else  {
-        <img [src]="pokemon.fotoShiny" alt="{{ pokemon.nombre }}">
-      }
-      @if(pokemon.tipo2 !== 'N/A'){
-        <p
-          class=colorearTipo({{pokemon.tipo}})> <strong>Tipo:</strong> {{ pokemon.tipo }} / {{ pokemon.tipo2 }} </p>
-       }@else {
-        <p><strong>Tipo:</strong> {{ pokemon.tipo }} </p>
-       }
-      <p><strong>Juego:</strong> {{ pokemon.generacion }} generación</p>
-      <button (click)="verShiny()">Ver {{ esShiny ? 'Normal' : 'Shiny' }}</button>
-      @if( pokemon.nPokedex < 152){
-    <button (click) = "verPokedex()">Ver pokédex</button>
-      }@else {
-        <p>Este Pokémon no está en la pokédex original</p>
-      }
-      
-    }
+        } @else {
 
-    </div>
+
+                  <h1 [style] = "pokemon.name">{{pokemon.name | mayusculas }}</h1>
+                  <h3>{{pokemon.id}}</h3>
+                  <!-- <h3>{{pokemon.generacion}} generación</h3> -->
+
+            
+              @if (esShiny === false) {
+                <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}">
+              } @else  {
+                <img [src]="pokemon.sprites.front_shiny" alt="{{ pokemon.name }}">
+              }
+              
+              <div id="tiposPokemon">
+                
+                @if( pokemon.types.length > 1){
+
+                    <div class="tipos">
+                      <strong>Tipo:</strong>
+                      <span [class]="colorearTipo( pokemon.types[0].type.name)">{{ pokemon.types[0].type.name | mayusculas }} </span>   
+                      <span [class]="colorearTipo( pokemon.types[1].type.name)">{{ pokemon.types[1].type.name | mayusculas }} </span>               
+                    </div>
+                    
+                  }@else {
+                    
+                    <div class="tipos">
+                      <strong>Tipo:</strong>
+                      <span [class]="colorearTipo( pokemon.types[0].type.name)">{{ pokemon.types[0].type.name | mayusculas }} </span>
+                    </div>
+                    
+                  }
+              </div>
+
+              <button type="button" class= "verShiny" (click)="verShiny()">Ver {{ esShiny ? 'Normal' : 'Shiny' }}</button>
+              
+              <!-- <p> <strong>Juego:</strong>{{ pokemon.generacion }} generación</p> -->
+
+           
+                <button (click) = "verPokedex()">Ver pokédex</button>
+             
+              
+        }
+
+ </div>
+  }
+
+
+
+      
+
+
+
   
-      <!-- <p [style]="colorearTipo( pokemon.tipo )">{{ pokemon.tipo }}</p> -->
     
     

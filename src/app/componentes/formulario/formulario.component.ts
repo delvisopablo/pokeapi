@@ -2,7 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PokemonComponent } from '../pokemon/pokemon.component';
-import { Pokemon } from '../../../modelos/pokemon.interface';
+import { Pokemon } from '../../../modelos/pokemon';
 
 import { ConsultaserviceService } from '../../servicios/consulta-service/consultaservice.service';
 import { Cons } from 'rxjs';
@@ -16,18 +16,7 @@ import { Cons } from 'rxjs';
 })
 export class FormularioComponent {
 
-  @Input() pokemon: Pokemon = {
-    nombre: '',
-    habilidad: '',
-    nPokedex: 1,
-    tipo: '',
-    tipo2: '',
-    generacion: '',
-    juego: '',
-    fotoDel: '',
-    fotoShiny: '',
-    url: '',
-    pokedex: ''
+  @Input() pokemon: any = {
 };
 
   formularioEnviado: boolean = false;
@@ -36,20 +25,6 @@ export class FormularioComponent {
 
   resultado: number = 0;
   final: any;
-
-  // listaPokemon: Pokemon = {
-  //   nombre: '',
-  //   habilidad: '',
-  //   nPokedex: 1,
-  //   tipo: '',
-  //   tipo2: '',
-  //   generacion: '',
-  //   juego: '',
-  //   fotoDel: '',
-  //   fotoShiny: '',
-  //   url: '',
-  //   descripcion: ''
-  // };
 
   cargando: boolean = false;
 
@@ -75,6 +50,8 @@ export class FormularioComponent {
     var nPokedex = this.calcularPokemon();
 
     this.getDatos(nPokedex);
+
+    this.formulario.reset();
     
   }
 
@@ -155,7 +132,7 @@ export class FormularioComponent {
     
     const year = new Date().getFullYear();
     const releaseYear = 1996;
-    const maxEdadPrimeraGen = 45;
+    const maxEdadPrimeraGen = 35;
     const birthYear = year - edad;
     const ageAtRelease = birthYear - releaseYear;
 
@@ -163,7 +140,7 @@ export class FormularioComponent {
         return 1;
     } else {
         
-        const generation = Math.ceil(ageAtRelease / 3);
+        const generation = Math.ceil(ageAtRelease / 4);
         return Math.min(Math.max(generation, 1), 9);
         
     }

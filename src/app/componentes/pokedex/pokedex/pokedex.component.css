@@ -1,0 +1,110 @@
+.principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px; 
+}
+
+.pokemon, .pokemonSig, .pokemonAnt {
+  background-color: black;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  flex: 1;
+  max-width: 30%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pokemon img, .pokemonSig img, .pokemonAnt img {
+  width: 150px;
+  height: 150px;
+}
+
+.detalles {
+  margin-top: 10px;
+}
+
+.tipos {
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+  margin-bottom: 20px;
+}
+
+.tipos strong {
+  margin-right: 5px;
+}
+
+.tipos span {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.buscarPokemon {
+  background-color: #3b4cca; 
+  margin-bottom: 20px;
+}
+
+.buscarPokemon:hover {
+  background-color: #2b3ca8;
+}
+
+.cambiarPokemon {
+  background-color: #ff0000; 
+  margin: 5px; 
+}
+
+.cambiarPokemon:hover {
+  background-color: #cc0000;
+}
+
+.busqueda {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; 
+}
+
+.pokemonSig, .pokemonAnt {
+  background-color: black;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  flex: 1;
+  max-width: 30%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+}

@@ -1,16 +1,433 @@
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    text-align: center;
-}
-.img-negra {
-    max-width: 100%;
-    height: auto;
-    filter: brightness(0); 
+#pokemonGuess, #pokemon {
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  border: 2px solid #EE1515;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-image: url('../../../assets/imagenes/pokeguess.png');
+  background-size: 100% 100%;
+  background-position: 90% 100%;
+  width: 90%;
 }
 
-.img-normal{
-    max-width: 100%;
-    height: auto;
-    filter: brightness(1); 
+.img-negra {
+  filter: brightness(0);
+  max-width: 100%;
+  height: auto;
+}
+
+.img-normal {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+img {
+  width: 250px;
+  display: block;
+  margin: 0 auto;
+}
+
+button {
+  background-color: var(--poke-red, #EE1515);
+  color: #FFFFFF;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: #CC0000;
+}
+
+#score {
+  text-align: center;
+}
+
+#result {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.perdido {
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 20px;
+  position: relative;
+}
+
+.imagen-container {
+  position: relative;
+  display: inline-block;
+}
+
+.imagen-container img {
+  width: 300px;
+  height: auto;
+  margin-bottom: -50px;
+}
+
+.texto-perdido {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: red;
+  font-size: 48px;
+  text-shadow: 2px 2px 4px black;
+}
+
+.tipos, .botones-container {
+  margin-top: 20px;
+}
+
+.tipos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tipos strong {
+  font-weight: bold;
+  color: #333;
+}
+
+.tipos span {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+}
+
+/* .botones-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botones-container button:hover {
+  background-color: #0056b3;
+} */
+
+#acertaste {
+  background-color: #dff0d8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  margin: 20px;
+}
+
+#score {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px;
+  width: 200px;
+}
+
+#score h1, #score .vidas, #score .racha, #score .intentos {
+  margin: 10px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+#score .vidas {
+  color: #d9534f;
+}
+
+#score .racha {
+  color: #5cb85c;
+}
+
+#score .intentos {
+  color: #f0ad4e;
+}
+
+.resultado {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.resultado h1 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 20px;
+}
+
+.resultado .imagen-container {
+  margin-bottom: 20px;
+}
+
+.resultado img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.resultado .tipos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.resultado .tipos strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.resultado .tipos span {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.resultado button {
+  background-color: #ffcc00;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.resultado button:hover {
+  background-color: #ff9900;
+}
+
+.verRanking {
+  background-color: #ffcc00;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.verRanking:hover {
+  background-color: #ff9900;
+}
+
+.verRanking-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.juego-box {
+  width: 100%;
+  max-width: 500px;
+  height: 650px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #EE1515;
+  border-radius: 10px;
+  background-color: #fff;
+  background-image: url('../../../assets/imagenes/pokeguess.png');
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.juego-box img {
+  max-width: 500px;
+  height: auto;
+}
+
+.juego-box form,
+.juego-box button,
+.juego-box h1,
+.juego-box .tipos {
+  width: 100%;
+  text-align: center;
+}
+
+.juego-box .tipos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.fondo-adivina {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  aspect-ratio: 1365 / 768;
+  margin: 0 auto;
+  background-image: url('../../../assets/imagenes/pokeguess.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fondo-img {
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+  background-image: url('../../../assets/imagenes/pokeguess.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.sombra-pokemon {
+  position: absolute;
+  top: 51%;
+  left: 29%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  filter: brightness(0);
+  z-index: 2;
+}
+
+.no-sombra-pokemon {
+  position: absolute;
+  top: 51%;
+  left: 29%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  filter: brightness(1);
+  z-index: 2;
+}
+
+.formuGuess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Botones centrados */
+.botones-contenedor {
+  margin-top: 1rem;
+
+}
+
+.botones-contenedor button {
+  background-color: #e60000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botones-contenedor button:hover {
+  background-color: #cc0000;
+}
+
+.contenedor-adivina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bloque-superior {
+  text-align: center;
+}
+
+.boton-afuera {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.boton-afuera button {
+  background-color: #d60000;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.boton-afuera button:hover {
+  background-color: #b00000;
+}
+
+.poke-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-pokemon {
+  width: 120px;
+  height: auto;
+  margin-bottom: 0.5rem;
+  /* 👇 Esto centra el sprite en el fogonazo */
+  transform: translateY(40px);
+}
+
+.poke-contenedor h2 {
+  margin: 1rem 0 0.3rem;
+  font-size: 1.8rem;
+  transform: translateY(40px); /* Igual que el sprite */
+}
+
+.tipos {
+  margin-top: 0.3rem;
+  transform: translateY(40px); /* Mismo ajuste para mantener coherencia */
+}
+
+
+.contenido-adivina h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }

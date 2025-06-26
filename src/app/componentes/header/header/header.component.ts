@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { Router, RouterLink } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent  {
+
+  @Input () pokemon: any;
 
   private router: Router;
   constructor(){

@@ -11,13 +11,14 @@ import { PokedexComponent } from './componentes/pokedex/pokedex/pokedex.componen
 import { PokemonComponent } from './componentes/pokemon/pokemon.component';
 import { FormularioComponent } from './componentes/formulario/formulario.component';
 import { FooterComponent } from './componentes/footer/footer/footer.component';
+import { FavoritoComponent } from './componentes/favorito/favorito/favorito.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, PrincipalComponent, PokedexComponent, PokemonComponent, FormularioComponent, ReactiveFormsModule, FormsModule, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, PrincipalComponent, PokedexComponent, PokemonComponent, FormularioComponent, ReactiveFormsModule, FormsModule, FavoritoComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

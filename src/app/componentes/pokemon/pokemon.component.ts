@@ -1,8 +1,9 @@
 import { Component, inject, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Pokemon } from '../../../modelos/pokemon.interface';
+import { Pokemon } from '../../../modelos/pokemon';
+import { MayusPipePipe } from '../../../modelos/pipes/mayusPipe.pipe';
 import { ConsultaserviceService } from '../../servicios/consulta-service/consultaservice.service';
 import { style } from '@angular/animations';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PrincipalComponent } from '../principal/principal/principal.component';
 import { FormularioComponent } from '../formulario/formulario.component';
 
@@ -10,26 +11,17 @@ import { FormularioComponent } from '../formulario/formulario.component';
 @Component({
   selector: 'app-pokemon',
   standalone: true,
-  imports: [PrincipalComponent],
+  imports: [PrincipalComponent, MayusPipePipe, RouterLink],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.css'
 })
 export class PokemonComponent implements OnInit {
 
+   @Input() pokemon: any;
 
-  @Input() pokemon: Pokemon = {
-        nombre: '',
-        habilidad: '',
-        nPokedex: 25,
-        tipo: '',
-        tipo2: '',
-        generacion: '',
-        juego: '',
-        fotoDel: '',
-        fotoShiny: '',
-        url: '',
-        pokedex: {}
-  };
+  private consultaService = inject ( ConsultaserviceService);
+
+  
 
   pokedex = [
     {
@@ -792,7 +784,9 @@ export class PokemonComponent implements OnInit {
       ]
     }];
 
-    router: Router;
+
+
+    // pokemon: Pokemon | undefined;
   
     data: any;
     nPokedex: any = 25;
@@ -801,37 +795,46 @@ export class PokemonComponent implements OnInit {
     cargando: boolean = false;
   
   
-      constructor(private consultaService: ConsultaserviceService) {
+  constructor(private router: Router) {
        
         this.consultaService = inject(ConsultaserviceService);
-        this.consultaService.buscarPokemon(this.nPokedex);
+        // this.consultaService.buscarPokemon(this.nPokedex);
         this.router = inject(Router);
+        this.esShiny = false;
+
        }
   
       ngOnInit() {
         this.esShiny = false;
         this.getDatos(this.nPokedex);
-        this.mayusculas(this.pokemon.nombre);
+        
         
        }
 
-      ngOnChanges(changes: SimpleChanges) {
-        if (changes["pokemon"] && changes["pokemon"].currentValue) {
-          this.getDatos(changes["pokemon"].currentValue.nPokedex);
-        }
-      }
+      // ngOnChanges(changes: SimpleChanges) {
+      //   if (changes["pokemon"] && changes["pokemon"].currentValue) {
+      //     this.getDatos(changes["pokemon"].currentValue.nPokedex);
+      //   }
+      // }
 
 
   
       getDatos(termino: any) {
+        this.esShiny = false;
         this.cargando = true;
         this.consultaService.buscarPokemon(termino).subscribe({
           next: (data: any) => {
             this.pokemon = data;
-            this.pokemon.generacion = this.calcularGeneracion(this.pokemon.nPokedex);
-            this.esShiny = false;
-            this.cargando = false;
-            console.log(this.pokemon);
+            if(this.pokemon?.id === undefined){
+              console.log('No se encontró el pokemon');
+            }else{
+              console.log("Numero de pokemon = " + this.pokemon.id);
+
+              this.esShiny = false;
+              this.cargando = false;
+              console.log(this.pokemon.name);
+            }
+            
           }, 
           error: (error: any) => {
             console.error(error);
@@ -839,23 +842,30 @@ export class PokemonComponent implements OnInit {
           }
           })
         }
-  
 
        
 
-        verShiny() {
-          this.esShiny = !this.esShiny;
-          this.currentImage = this.esShiny ? this.pokemon.fotoShiny : this.pokemon.fotoDel;
-        }
-
         verPokedex() {
-          this.router.navigate(['/pokedex/' + this.pokemon.nPokedex]);
+          this.router.navigate(['/pokedex/' + this.pokemon?.id]);
         }
       
-        cambiarPokemon(cambio: number) {
-          const newId = this.pokemon.nPokedex + cambio;
-          this.getDatos(newId);
-          this.esShiny = false;
+        // cambiarPokemon(cambio: number) {
+        //   if (this.pokemon?.id === undefined) {
+        //     return;
+        //   }
+        //   const newId = this.pokemon.id + cambio;
+        //   this.getDatos(newId);
+        //   this.esShiny = false;
+        // }
+
+        verShiny() {
+          if(this.pokemon == undefined) {
+            return;
+          }else{
+            this.esShiny = !this.esShiny;
+            this.currentImage = this.esShiny ? this.pokemon.sprites.front_shiny : this.pokemon.sprites.front_default;
+          }
+          
         }
 
         calcularGeneracion(nPokedex: number){
@@ -880,56 +890,69 @@ export class PokemonComponent implements OnInit {
           }
         }
   
-        mayusculas(value: string): string {
-          if (!value) return value;
-          return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-        }
-  
-        colorearTipo(tipo: string): string {
-          switch (tipo) {
-              case 'normal':
-              return 'tipo-normal';
-              case 'fire':
-              return "tipo-fuego";
-              case 'water':
-              return 'background-color: var(--water-color)';
-              case 'electric':
-              return 'background-color: var(--electric-color)';
-              case 'grass':
-              return 'background-color: var(--grass-color)';
-              case 'ice':
-              return 'background-color: var(--ice-color)';
-              case 'fighting':
-              return 'background-color: var(--fighting-color)';
-              case 'poison':
-              return 'background-color: var(--poison-color)';
-              case 'ground':
-              return 'background-color: var(--ground-color)';
-              case 'flying':
-              return 'background-color: var(--flying-color)';
-              case 'psychic':
-              return 'background-color: var(--psychic-color)';
-              case 'bug':
-              return 'background-color: var(--bug-color)';
-              case 'rock':
-              return 'background-color: var(--rock-color)';
-              case 'ghost':
-              return 'background-color: var(--ghost-color)';
-              case 'dragon':
-              return 'background-color: var(--dragon-color)';
-              case 'dark':
-              return 'background-color: var(--dark-color)';
-              case 'steel':
-              return 'background-color: var(--steel-color)';
-              case 'fairy':
-              return 'background-color: var(--fairy-color)';
-              default:
-              return 'background-color: var(--default-color)';
+        colorearTipo(tipo: string): string{
+          if(tipo === undefined){
+
+            return 'tipo-default';
+          }else{
+            switch (tipo) {
+                          case 'normal': return 'tipo-normal'; 
+                          case 'fire': return 'tipo-fuego';
+                          case 'water': return 'tipo-agua';
+                          case 'electric': return 'tipo-electrico';
+                          case 'grass': return 'tipo-planta';
+                          case 'ice': return 'tipo-hielo';
+                          case 'fighting': return 'tipo-lucha';
+                          case 'poison': return 'tipo-veneno';
+                          case 'ground': return 'tipo-tierra';
+                          case 'flying': return 'tipo-volador';
+                          case 'psychic': return 'tipo-psiquico';
+                          case 'bug': return 'tipo-bicho';
+                          case 'rock': return 'tipo-roca';
+                          case 'ghost': return 'tipo-fantasma';
+                          case 'dragon': return 'tipo-dragon';
+                          case 'dark': return 'tipo-siniestro';
+                          case 'steel': return 'tipo-acero';
+                          case 'fairy': return 'tipo-hada';
+                          default: return 'tipo-default';
+                      }
           }
+          
         }
+
+        cambiarFondo(termino:string){
+          switch (termino.toLowerCase()) {
+            case 'normal': return 'tipo-normal'; 
+            case 'fire': return 'tipo-fuego';
+            case 'water': return 'tipo-agua';
+            case 'electric': return 'tipo-electrico';
+            case 'grass': return 'tipo-planta';
+            case 'ice': return 'tipo-hielo';
+            case 'fighting': return 'tipo-lucha';
+            case 'poison': return 'tipo-veneno';
+            case 'ground': return 'tipo-tierra';
+            case 'flying': return 'tipo-volador';
+            case 'psychic': return 'tipo-psiquico';
+            case 'bug': return 'tipo-bicho';
+            case 'rock': return 'tipo-roca';
+            case 'ghost': return 'tipo-fantasma';
+            case 'dragon': return 'tipo-dragon';
+            case 'dark': return 'tipo-siniestro';
+            case 'steel': return 'tipo-acero';
+            case 'fairy': return 'tipo-hada';
+            default: return 'tipo-default';
+        }
+        }
+      
+
+
+
+
+}
+        
   
   
-    }
+    
   
   
   

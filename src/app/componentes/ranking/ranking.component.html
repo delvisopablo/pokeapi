@@ -1,0 +1,28 @@
+<h2>Top 10 Ranking</h2>
+
+<ul *ngIf="rankings.length > 0; else noData">
+  <li *ngFor="let r of rankings; let i = index" [ngClass]="{
+    'oro': i === 0,
+    'plata': i === 1,
+    'bronce': i === 2
+  }">
+    <div *ngIf="r.editando; else mostrarDatos">
+     <input [(ngModel)]="r.nombre" placeholder="Nuevo nombre">
+<span>- {{ r.puntuacion }} pts - Racha: {{ r.racha }} - Modo: {{ r.modo }}</span>
+
+      <button (click)="guardarCambios(r)">Guardar</button>
+      <button (click)="cancelarEdicion(r)">Cancelar</button>
+    </div>
+    <ng-template #mostrarDatos>
+      <span class="jugador">
+        {{ r.nombre }} - {{ r.puntuacion }} pts - Racha: {{ r.racha }} - Modo: {{ r.modo }}
+      </span>
+      <button (click)="activarEdicion(r)">Editar</button>
+      <button (click)="eliminarJugador(r.id)">Eliminar</button>
+    </ng-template>
+  </li>
+</ul>
+
+<ng-template #noData>
+  <p>No hay jugadores en el ranking.</p>
+</ng-template>

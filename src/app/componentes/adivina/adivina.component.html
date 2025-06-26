@@ -1,29 +1,139 @@
-@if(acertado === false)
-{
-    <div id="pokemonGuess">
-    <img src="{{ pokemon.fotoDel }}" alt="{{ pokemon.nombre }}" class = "img-negra">
-    <form [formGroup]="formuGuess" (ngSubmit)="onSubmit()">
-    <input type="text" id="guessInput" placeholder="Escribe tu respuesta aquí" formControlName="guess">
-    <button type="submit">Adivinar</button>
+<h1>Adivina el Pokémon</h1>
 
-    </form>
-</div>
- }@else {
+@if (pokeGuess) {
+  @if (vidas === 0) {
+    <div class="fondo-adivina">
+          <div class="imagen-container">
+            <img [src]="pokeGuess.sprites.front_default" alt="perdiste">
+            <h1 class="texto-perdido">Perdiste</h1>
+          </div>
+          <h1>{{ pokeGuess.name | mayusculas }}</h1>
+          @if (pokeGuess.types.length > 1) {
+            <div class="tipos">
+              <strong>Tipo:</strong>
+              <span [class]="colorearTipo(pokeGuess.types[0].type.name)">
+                {{ pokeGuess.types[0].type.name | mayusculas }}
+              </span>
+              <span [class]="colorearTipo(pokeGuess.types[1].type.name)">
+                {{ pokeGuess.types[1].type.name | mayusculas }}
+              </span>
+            </div>
+          } @else {
+            <div class="tipos">
+              <strong>Tipo:</strong>
+              <span [class]="colorearTipo(pokeGuess.types[0].type.name)">
+                {{ pokeGuess.types[0].type.name | mayusculas }}
+              </span>
+            </div>
+          }
+            <div class="botones-contenedor"> 
+              <form [formGroup]="formuNombre">
+                <label for="nombreUsuario">Nombre:</label>
+                <input type="text" id="nombreUsuario" formControlName="nombre">
+                <button type="button" (click)="guardarPuntuacion()">Guardar puntuación</button>
+              </form>
     
-        <div id="pokemon">
-            <h1>Acertaste</h1>
-            <img src="{{ pokemon.fotoDel }}" alt="{{ pokemon.nombre }}" class ="img-normal">
-            <h1>{{ pokemon.nombre }}</h1>
-            <h2>{{ pokemon.tipo }}</h2>
-            <!-- <p>{{getDescripcionPokemon(pokemon.nombre)}}</p> -->
-        </div>
-    }
+            <button type="button" (click)="reiniciarJuego()">Reiniciar</button>
+            </div>
+    </div>
+  } @else if (mostrarResultado) {
+   <div class="fondo-adivina">
+  <div class="contenido-adivina">
+    <h1>Has fallado</h1>
+    
+    <div class="poke-contenedor">
+      <img [src]="pokeGuess.sprites.front_default" alt="{{ pokeGuess.name }}" class="img-pokemon">
+      <h2>{{ pokeGuess.name | mayusculas }}</h2>
 
+      @if (pokeGuess.types.length > 1) {
+        <div class="tipos">
+          <strong>Tipo:</strong>
+          <span [class]="colorearTipo(pokeGuess.types[0].type.name)">
+            {{ pokeGuess.types[0].type.name | mayusculas }}
+          </span>
+          <span [class]="colorearTipo(pokeGuess.types[1].type.name)">
+            {{ pokeGuess.types[1].type.name | mayusculas }}
+          </span>
+        </div>
+      } @else {
+        <div class="tipos">
+          <strong>Tipo:</strong>
+          <span [class]="colorearTipo(pokeGuess.types[0].type.name)">
+            {{ pokeGuess.types[0].type.name | mayusculas }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Botón fuera del fondo -->
+<div class="boton-afuera">
+  <button type="button" (click)="continuar()">CONTINUAR</button>
+</div>
+
+  } @else if (!acertado) {
+    <div class="fondo-adivina">
+      <img src="../../../assets/imagenes/pokeguess.png" alt="fondo" class="fondo-img">
+      <img [src]="pokeGuess.sprites.front_default" class="sombra-pokemon">
+    </div>
+     <div class="botones-contenedor"> 
+      <form class="formuGuess" [formGroup]="formuGuess">
+      <input type="text" id="guessInput" placeholder="Adivina el Pokémon" formControlName="guess">
+      <button type="button" (click)="juego()">Adivinar</button> 
+      <button type="button" (click)="noLoSe()">No lo sé</button>
+      <button type="button" (click)="cambioModoFacil()">Modo Fácil</button>
+    </form>
+     </div>
+    
+  } @else {
+    <div class="contenedor-adivina">
+  <div class="bloque-superior">
+    <h1>Acertaste</h1>
+    <h1>{{ pokeGuess.name | mayusculas }}</h1>
+  </div>
+
+  <div class="fondo-adivina">
+    <img [src]="pokeGuess.sprites.front_default"
+         alt="{{ pokeGuess.name }}"
+         class="img-normal" />
+
+    @if (pokeGuess.types.length > 1) {
+      <div class="tipos">
+        <strong>Tipo:</strong>
+        <span [class]="colorearTipo(pokeGuess.types[0].type.name)">
+          {{ pokeGuess.types[0].type.name | mayusculas }}
+        </span>
+        <span [class]="colorearTipo(pokeGuess.types[1].type.name)">
+          {{ pokeGuess.types[1].type.name | mayusculas }}
+        </span>
+      </div>
+    } @else {
+      <div class="tipos">
+        <strong>Tipo:</strong>
+        <span [class]="colorearTipo(pokeGuess.types[0].type.name)">
+          {{ pokeGuess.types[0].type.name | mayusculas }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <div class="botones-contenedor">
+    <button type="button" (click)="reiniciar()">CONTINUAR JUGANDO</button>
+  </div>
+</div>
+
+  }
+}
+
+<div class="ranking">
+  <button type="button" class="verRanking" (click)="verRanking()">Ver Ranking</button>
+</div>
 
 <div id="score">
-    <h1>Score: <span id="scoreText">0</span></h1>
-
-
-<div id="result">
-    <h1 id="resultText"></h1>
-    <button onclick="reiniciar()">Reiniciar</button>
+  <h1>Score: <span id="scoreText">{{ puntuacion }}</span></h1>
+  <div class="vidas">Vidas: {{ vidas }}</div>
+  <div class="racha">Racha: {{ racha }}</div>
+  <div class="aciertos">Aciertos: {{ aciertosTotales }}</div>
+  <div class="intentos">Intentos totales: {{ intentosTotales }}</div>
+</div>

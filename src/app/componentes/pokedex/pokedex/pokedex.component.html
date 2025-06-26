@@ -1,18 +1,185 @@
+   <div class="pokedex">
+   <form action=""
+      [formGroup] = "busqueda">
+
+         <input type="text" id="buscarPokemon" formControlName="nombrePkmn" placeholder="Busca un Pokemon">
+         <button type="button" (click)="buscarPokemon()">Buscar</button>
+   </form>
+
+
+  @if (load1 === false && load2 === false && load3 === false) {
+   <p>Cargando...</p>
+ } @else {
+
+   <div class="contenedor">
+
+
+
+   @if(pokemonSig === undefined) {
+     <p>No se ha encontrado ningún Pokémon</p>
+   } @else {
+     <div class="pokemon">
    
-<h1>Pokedex</h1>
+   
+
+
+         <h1 >{{ pokemonSig.name | mayusculas }}</h1>
+            <h3>ID: {{ pokemonSig.id }}</h3>
+            <img [src]="pokemonSig.sprites.front_default" alt="{{ pokemonSig.name }}">
+            <div class="detalles">
+               <span ><strong>Altura:</strong> {{ calcularAltura(pokemonSig.height) }} m</span>
+               <span ><strong>Peso:</strong> {{ calcularPeso(pokemonSig.weight) }} Kg</span>
+            <div id="tiposPokemon">
+                     
+               @if( pokemonSig.types.length > 1){
+
+                  <div class="tipos">
+                     <strong>Tipo:</strong>
+                     <span [class]="colorearTipo( pokemonSig.types[0].type.name)">{{ pokemonSig.types[0].type.name | mayusculas }} </span>   
+                     <span [class]="colorearTipo( pokemonSig.types[1].type.name)">{{ pokemonSig.types[1].type.name | mayusculas }} </span>   
+                  </div>
+                  
+               }@else {
+                  
+                  <div class="tipos">
+                     <strong>Tipo:</strong>
+                     <span [class]="colorearTipo( pokemonSig.types[0].type.name)">{{ pokemonSig.types[0].type.name | mayusculas }} </span>   
+                  </div>
+                  
+               }
+            </div>
+            <!-- <p><strong>Generación:</strong> {{ pokemonSig.generacion }}</p> -->
+            <!-- <p><strong>Pokédex:</strong> {{ pokemonSig.id }}</p> -->
+            <!-- <p><strong>Favorito:</strong> {{ pokemonSig.favorito ? 'Sí' : 'No' }}</p> -->
+            </div>
+         
+     </div>
+
+   }
+
+   @if(pokemon === undefined) {
+      <p>No se ha encontrado ningún Pokémon</p>
+    } @else {
+      <div class="pokemon">
+    
+    
+ 
+ 
+          <h1 >{{ pokemon.name | mayusculas }}</h1>
+             <h3>ID: {{ pokemon.id }}</h3>
+             <img [src]="pokemon?.sprites?.front_default" alt="{{ pokemon?.name }}">
+             <div class="detalles">
+             <span><strong>Altura:</strong> {{ calcularAltura(pokemon.height) }} m</span>
+             <span><strong>Peso:</strong> {{ calcularPeso(pokemon.weight) }} Kg</span>
+             <div id="tiposPokemon">
+                      
+                @if( pokemon.types.length > 1){
+ 
+                   <div class="tipos">
+                      <strong>Tipo:</strong>
+                      <span [class]="colorearTipo( pokemon.types[0].type.name)">{{ pokemon.types[0].type.name | mayusculas }} </span>   
+                      <span [class]="colorearTipo( pokemon.types[1].type.name)">{{ pokemon.types[1].type.name | mayusculas }} </span>   
+                   </div>
+                   
+                }@else {
+                   
+                   <div class="tipos">
+                      <strong>Tipo:</strong>
+                      <span [class]="colorearTipo( pokemon.types[0].type.name)">{{ pokemon.types[0].type.name | mayusculas }} </span>   
+                   </div>
+                   
+                }
+                <!-- <button (click)="addFavorito()">Añadir a Favoritos</button> -->
+             </div>
+             <!-- <p><strong>Generación:</strong> {{ pokemon.generacion }}</p> -->
+             <!-- <p><strong>Pokédex:</strong> {{ pokemon.id }}</p> -->
+             <!-- @if(!pokemon.favorito){
+               <button type="button">Añadir Favorito</button>
+               }@else {
+                   <button type="button">Quitar Favorito</button>
+               } -->
+
+             </div>
+          
+      </div>
+ 
+    }
+
+   @if(pokemonAnt === undefined) {
+     <p>No se ha encontrado ningún Pokémon</p>
+   } @else {
+     <div class="pokemon">
+   
+        <h1 >{{ pokemonAnt.name | mayusculas }}</h1>
+          <h3>ID: {{ pokemonAnt.id }}</h3>
+          <img [src]="pokemonAnt.sprites.front_default" alt="{{ pokemonAnt.name }}">
+          <div class="detalles">
+          <span><strong>Altura:</strong> {{ calcularAltura(pokemonAnt.height) }} m</span>
+          <span><strong>Peso:</strong> {{ calcularPeso(pokemonAnt.weight) }} Kg</span>
+          <div id="tiposPokemon">
+                 
+            @if( pokemonAnt.types.length > 1){
+ 
+               <div class="tipos">
+                 <strong>Tipo:</strong>
+                 <span [class]="colorearTipo( pokemonAnt.types[0].type.name)">{{ pokemonAnt.types[0].type.name | mayusculas }} </span>   
+                 <span [class]="colorearTipo( pokemonAnt.types[1].type.name)">{{ pokemonAnt.types[1].type.name | mayusculas }} </span>   
+               </div>
+               
+            }@else {
+               
+               <div class="tipos">
+                 <strong>Tipo:</strong>
+                 <span [class]="colorearTipo( pokemonAnt.types[0].type.name)">{{ pokemonAnt.types[0].type.name | mayusculas }} </span>   
+               </div>
+               
+            }
+          </div>
+          <!-- <p><strong>Generación:</strong> {{ pokemonAnt.generacion }}</p> -->
+          <!-- <p><strong>Pokédex:</strong> {{ pokemonAnt.id }}</p> -->
+          <!-- <p><strong>Favorito:</strong> {{ pokemonAnt.favorito ? 'Sí' : 'No' }}</p> -->
+          </div>
+        
+     </div>
+ 
+   }
+</div>
+
+<div class="busqueda">
+   <button type="button" class="cambiarPokemon" (click)="cambiarPokemon(+1)">Siguiente</button>
+   <button type="button" class="cambiarPokemon" (click)="cambiarPokemon(-1)">Anterior</button>
+</div>
+
+
+  
+     
+
+
+    
+
+    
+
+
+    
+ <!-- <p> <strong>Juego:</strong>{{ pokemon }} generación</p> -->
+ <!-- <span [class]="getDescripcionPokemon(pokemon.name)"></span> -->
+
+
+    }  
+    
+
+
+ 
+ 
+ 
+ 
+
+ <!-- <button (click)="verShiny()">Ver {{ esShiny ? 'Normal' : 'Shiny' }}</button> -->
+   
 
 
 
-
-
-    <div >
-        <h1>pokenmonas</h1>
-        <h2>{{ pokemon.nombre }}</h2>
-        <p>Number: {{ pokemon.nPokedex }}</p>
-        <p>Type: {{ pokemon.tipo }}</p>
-        <img src="{{ pokemon.fotoDel }}" alt="{{ pokemon.nombre }} Image">
-        <p>{{getDescripcionPokemon(pokemon.nombre)}}</p>
-    </div>
+    
 
 
 
@@ -22,4 +189,11 @@
 
     <!-- <button (click)="prev()">Prev</button> -->
 
-    
+   </div>
+<!-- 
+   <div>
+      @for (entry of entries; track $index) {
+         <strong>{{ entry.id }}: {{ entry.nombre }}</strong>
+         <p>{{ entry.descripcion }}</p>
+      }
+   </div> -->

@@ -1,15 +1,62 @@
 
+:root {
+  --poke-red: #FF0000;
+  --poke-blue: #3B4CCA;
+  --poke-yellow: #FFDE00;
+  --poke-light-blue: #71C3FF;
+  --poke-text: #212121;
+  --poke-background: #f0f0f0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e9e9e9;
+  color: var(--poke-text);
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+a {
+  color: var(--poke-blue);
+}
+
+button {
+  background-color: var(--poke-red);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: darken(var(--poke-blue), 10%);
+}
 
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+h1, h2, h3 {
+  font-size: 2em;
+}
 
+p {
+  font-size: 1.2em;
+}
 
-
-
-
-
-
-
+img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
 
 
 /* Colores de los tipos */
@@ -19,7 +66,7 @@
     border: 2px solid #6D9E1B;
   }
   
-  .tipo-oscuro {
+  .tipo-siniestro {
     background-color: #595761;
     border: 2px solid #41414D;
   }

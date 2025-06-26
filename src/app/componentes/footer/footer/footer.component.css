@@ -1,10 +1,12 @@
-.footer {
-    background-color: blue;
-    color: white;
-    padding: 10px;
-    text-align: center;
+footer {
+    background-color: #3B4CCA; 
+    color: #212529; 
+    text-align: center; 
+    padding: 20px 0; 
+    border-top: 1px solid #dee2e6; 
+    font-size: 14px; 
 }
 
-.footer-text {
-    font-size: 16px;
+footer p {
+    margin: 5px 0; 
 }

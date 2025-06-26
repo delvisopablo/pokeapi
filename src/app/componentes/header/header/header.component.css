@@ -1,34 +1,49 @@
-/* Estilos para el contenedor del header */
-.header-container {
+header {
+    background-color: #cc0000;
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .principal {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f2f2f2;
-    height: 60px;
 }
 
-/* Estilos para el título */
-.header-title {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-/* Estilos para los enlaces */
-.header-links {
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: center;
 }
 
-.header-link {
+header nav ul li {
     margin: 0 10px;
-    color: #ff0000; /* rojo */
 }
 
-.header-link:hover {
-    color: #0000ff; /* azul */
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
 }
 
-.header-link:active {
-    color: #ffff00; /* amarillo */
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    position: absolute;
+    left: -100px;
+    top: 0px;
+    width: 100px;
+    height: 100px;
+
+    background-size: cover;
+    background-position: center;
 }
